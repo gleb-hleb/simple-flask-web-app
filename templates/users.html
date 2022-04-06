@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Users List</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    {% if g.user.is_admin %}
+        <script src="{{ url_for('static', filename='js/user_actions.js') }}"></script>
+    {% endif %}
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                {% if g.user %}
+                    <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="/users" class="nav-link px-2 text-decoration-underline text-white">Users</a></li>
+                {% endif %}
+            </ul>
+            <div class="text-end">
+                {% if g.user %}
+                    <a class="btn btn-outline-light me-2" href="/auth/logout">Log out</a>
+                    <a class="btn btn-outline-light">{{ g.user.username }}</a>
+                {% else %}
+                    <a class="btn btn-outline-light me-2" href="/auth">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <br>
+    <h1>Users List</h1>
+    <br>
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+            {% else %}
+        <table class="table table-responsive">
+            <thead class="table-light">
+            <th>Id</th>
+            <th>UserName</th>
+            </thead>
+            <tbody>
+            {% for user in users_list %}
+                <tr id="user-{{ user.id }}">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    {% if g.user.is_admin %}
+                        <td>
+                            <a class="btn btn-outline-secondary" href="/users/edit/{{ user.id }}">Edit</a>
+                        </td>
+                        {% if user.username != g.user.username %}
+                            <td>
+                                <button class="btn btn-outline-danger" data-id="{{ user.id }}" onclick="delete_user(this)">
+                                    Delete
+                                </button>
+                            </td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if g.user.is_admin %}
+            <a class="btn btn-secondary" href="/users/add">Add User</a>
+        {% endif %}
+    {% endif %}
+</div>
+</body>
+</html>

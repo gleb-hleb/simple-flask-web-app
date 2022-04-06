@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Login page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+<body>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                {% if g.user %}
+                    <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="/users" class="nav-link px-2 text-white">Users</a></li>
+                {% else %}
+                    <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+                {% endif %}
+            </ul>
+            <div class="text-end">
+                {% if g.user %}
+                    <a class="btn btn-outline-light me-2" href="/auth/logout">Log out</a>
+                    <a class="btn btn-outline-light">{{ g.user.username }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <br>
+    <h1>Please login</h1>
+    <br>
+    <form action="" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
+        <input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
+        <input class="btn btn-secondary" type="submit" value="Login">
+    </form>
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+    {% endif %}
+</div>
+</body>
+</body>
+</html>

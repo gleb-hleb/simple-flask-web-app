@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <title>Edit User</title>
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                {% if g.user %}
+                    <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="/users" class="nav-link px-2 text-white">Users</a></li>
+                {% endif %}
+            </ul>
+            <div class="text-end">
+                {% if g.user %}
+                    <a class="btn btn-outline-light me-2" href="/auth/logout">Log out</a>
+                    <a class="btn btn-outline-light">{{ g.user.username }}</a>
+                {% else %}
+                    <a class="btn btn-outline-light me-2" href="/auth">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <br>
+    <form action="" method="post">
+        {% if user %}
+            <input type="text" placeholder="Username" name="username" value="{{ user.username }}">
+            <input type="password" placeholder="Password" name="password" value="{{ user.password }}">
+            <input type="checkbox" placeholder="Is Admin" name="is_admin" {% if user.is_admin %}checked{% endif %}>
+            <label for="is_admin">Admin</label>
+            <br>
+            <br>
+            <input class="btn btn-secondary" type="submit" value="Edit">
+        {% else %}
+            <input type="text" placeholder="Username" name="username">
+            <input type="password" placeholder="Password" name="password">
+            <input type="checkbox" placeholder="Is Admin" name="is_admin">
+            <label for="is_admin">Admin</label>
+            <br>
+            <br>
+            <input class="btn btn-secondary" type="submit" value="Add">
+        {% endif %}
+        {% if error %}
+            <br>
+            <br>
+            <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+    </form>
+</div>
+</body>
+</html>

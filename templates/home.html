@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                {% if g.user %}
+                    <li><a href="/" class="nav-link px-2 text-decoration-underline text-white">Home</a></li>
+                    <li><a href="/users" class="nav-link px-2 text-white">Users</a></li>
+                {% endif %}
+            </ul>
+            <div class="text-end">
+                {% if g.user %}
+                    <a class="btn btn-outline-light me-2" href="/auth/logout">Log out</a>
+                    <a class="btn btn-outline-light">{{ g.user.username }}</a>
+                {% else %}
+                    <a class="btn btn-outline-light me-2" href="/auth">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container text-center">
+    <br>
+    {% if g.user %}
+        <h1>Welcome {{ g.user.username }}!</h1>
+    {% else %}
+        <h1>Welcome visitor!<br>Please login to use our service.</h1>
+    {% endif %}
+</div>
+</body>
+</html>

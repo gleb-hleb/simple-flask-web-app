@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <title>Access Denied</title>
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                {% if g.user %}
+                    <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="/users" class="nav-link px-2 text-white">Users</a></li>
+                {% endif %}
+            </ul>
+            <div class="text-end">
+                {% if g.user %}
+                    <a class="btn btn-outline-light me-2" href="/auth/logout">Log out</a>
+                    <a class="btn btn-outline-light">{{ g.user.username }}</a>
+                {% else %}
+                    <a class="btn btn-outline-light me-2" href="/auth">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container text-center">
+    <br>
+    <h1>Access Denied</h1>
+    <br>
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+    {% endif %}
+</div>
+</body>
+</html>
