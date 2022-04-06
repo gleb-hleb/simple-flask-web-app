@@ -11,11 +11,11 @@ function delete_user(btn) {
         })
     }).then((response) => {
         if (response.status === 204) {
-            console.log("Sucsess deletion.")
+            console.log("Success deletion.")
             const userRow = document.getElementById(`user-${userId}`);
             userRow.remove();
         } else {
-            console.log("Faled deletion.")
+            console.log("Failed deletion.")
             window.location.href = "/users";
         }
     })

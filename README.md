@@ -2,7 +2,7 @@
 
 ---
 
-This repo demonstrates simple Flask app with user authification, database
+This repo demonstrates simple Flask app with user authentication, database
 interactions and async requests API.
 
 ### Project required stack
@@ -22,14 +22,14 @@ its folder and typing:
 $ python pip install -r requirements.txt
 ```
 
-Also, we need to create `.env` file with enviroment variables like this:
+Also, we need to create `.env` file with environment variables like this:
 
 ```dotenv
 DB_URL=postgresql://username:password@host:port/db
 SECRET_KEY=PASTE_HERE_SECRET_KEY
 ```
 
-After installing all dependencies and adding eviroment variables, run the app by
+After installing all dependencies and adding environment variables, run the app by
 entering its folder and typing:
 
 ```shell
@@ -62,7 +62,7 @@ The app has the following routes:
     - `GET` serves up the *edit.html* file
     - `POST` create a new user
 7. `/edit/<user_id>`
-    - `GET` serves up the *edit.html* file with preloded user data form
+    - `GET` serves up the *edit.html* file with preloaded user data form
     - `POST` edit a user
 8. `/load/source/<source_id>` load data from source file by *source_id*
 9. `/load/all` load all data from source files *asynchronously*
