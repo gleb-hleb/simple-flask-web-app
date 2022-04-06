@@ -6,9 +6,9 @@ interactions and async requests API.
 ### Project required stack
 
 - Python 3.7+
-- Flask / FastAPI
+- Flask
 - PostgreSQL
-- SQLAlchemy/Asyncpg
+- SQLAlchemy
 - asyncio
 
 ### How to run?
