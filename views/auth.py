@@ -34,11 +34,7 @@ def login():
             error = "Invalid Credentials. Please try again."
         else:
             fill_user_session(session, {"id": user.id, "username": user.username, "is_admin": user.is_admin})
-
-            response = make_response(redirect(url_for("users.users")))
-            response.set_cookie(key="auth_token", value="csadcvsdvs")
-
-            return response
+            return redirect(url_for("users.users"))
 
     return render_template("login.html", error=error)
 
