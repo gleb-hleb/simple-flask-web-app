@@ -1,7 +1,5 @@
 # Simple flask web application
 
----
-
 This repo demonstrates simple Flask app with user authentication, database
 interactions and async requests API.
 
